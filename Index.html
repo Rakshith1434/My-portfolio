@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Body with Light Green Gradient Background */
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #a8e6cf, #dcedc1); /* light green gradient */
+      color: #333;
+      transition: background 0.5s ease;
+    }
+
+    /* Header */
+    header { background: rgba(44, 62, 80, 0.85); color: #fff; padding: 60px 20px; text-align: center; border-radius: 0 0 30px 30px; }
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; }
+
+    /* Navigation */
+    nav { background: rgba(52, 73, 94, 0.85); padding: 10px; text-align: center; border-radius: 0 0 20px 20px; margin-bottom: 40px; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #f39c12; }
+
+    /* Sections */
+    section { padding: 50px 20px; max-width: 900px; margin: auto; }
+    section h2 { margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #ddd; display: inline-block; padding-bottom: 5px; }
+
+    /* Skills Section */
+    .skills h3 { margin-top: 20px; margin-bottom: 15px; color: #2c3e50; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .skill-card {
+      background: #f39c12;  
+      color: #fff;
+      padding: 12px 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .soft-skills .skill-card { background: #27ae60; }
+    .skill-card i { font-size: 1.5rem; margin-bottom: 8px; }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Projects */
+    .project {
+      background: rgba(255,255,255,0.85);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .project a { color: #2980b9; text-decoration: none; }
+    .project a:hover { text-decoration: underline; }
+
+    /* Education Section */
+    .education {
+      background: rgba(255,255,255,0.85);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .education h2 { text-align: center; margin-bottom: 30px; color: #2c3e50; }
+    .edu-card {
+      display: flex;
+      align-items: center;
+      background: #f4f6f7;
+      margin: 15px 0;
+      padding: 15px 20px;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .edu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .edu-card i {
+      font-size: 2rem;
+      margin-right: 15px;
+      color: #f39c12;
+    }
+    .edu-card h3 { margin: 0; color: #34495e; }
+    .edu-card p { margin: 5px 0; color: #555; }
+    .edu-card small { color: #888; }
+
+    /* Resume Section */
+    #resume div a {
+      padding: 12px 20px;
+      margin-right: 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #resume a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    #resume a.view { background: #27ae60; color: #fff; }
+    #resume a.download { background: #2980b9; color: #fff; }
+
+    /* Contact Section */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+    }
+    .contact-list li {
+      margin: 12px 0;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+    .contact-list i {
+      margin-right: 12px;
+      color: #f39c12;
+      font-size: 1.3rem;
+    }
+    .contact-list a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    .contact-list a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer { background: rgba(44, 62, 80, 0.85); color: #fff; text-align: center; padding: 20px; margin-top: 40px; border-radius: 20px 20px 0 0; }
+    footer a { color: #f39c12; text-decoration: none; }
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .edu-card { flex-direction: column; align-items: flex-start; }
+      .edu-card i { margin-bottom: 10px; }
+      #resume div a { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Pulikunta Rakshith Kumar Reddy</h1>
+    <p>Aspiring Data Analyst | Python | Power BI | AI & ML Student</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I am a B.Tech student specializing in CSE (AI & ML). I enjoy working on machine learning, data visualization, and problem-solving. I’m passionate about building real-world projects and growing as a professional.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+
+    <h3>Technical Skills</h3>
+    <div class="skills-grid tech-skills">
+      <div class="skill-card"><i class="fa-brands fa-python"></i> Python</div>
+      <div class="skill-card"><i class="fa-solid fa-chart-line"></i> Power BI</div>
+      <div class="skill-card"><i class="fa-solid fa-code"></i> C (Basic)</div>
+      <div class="skill-card"><i class="fa-solid fa-database"></i> SQL (Basic)</div>
+      <div class="skill-card"><i class="fa-brands fa-html5"></i> HTML</div>
+      <div class="skill-card"><i class="fa-solid fa-chart-pie"></i> Data Visualization</div>
+      <div class="skill-card"><i class="fa-solid fa-magnifying-glass-chart"></i> Data Analysis</div>
+    </div>
+
+    <h3>Soft Skills</h3>
+    <div class="skills-grid soft-skills">
+      <div class="skill-card"><i class="fa-solid fa-lightbulb"></i> Problem Solving</div>
+      <div class="skill-card"><i class="fa-solid fa-comments"></i> Communication</div>
+      <div class="skill-card"><i class="fa-solid fa-people-group"></i> Teamwork</div>
+      <div class="skill-card"><i class="fa-solid fa-clock"></i> Time Management</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Iris Flower Classification</h3>
+      <p>A machine learning project that classifies flowers into different species based on sepal and petal data.</p>
+      <p><a href="https://github.com/Rakshith1434/iris-classification" target="_blank">View on GitHub</a></p>
+    </div>
+    <div class="project">
+      <h3>Employee Data Management (Java Linked List)</h3>
+      <p>A Java project implementing linked lists to manage employee records.</p>
+      <p><a href="https://github.com/yourusername/employees" target="_blank">View on GitHub</a></p>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="education">
+    <h2>Education</h2>
+
+    <div class="edu-card">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <div>
+        <h3>B.Tech, CSE (AI & ML), Sri Venkateswara College of Engineering and Technology</h3>
+        <p>2022 – 2026 | CGPA: 8.15</p>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <i class="fa-solid fa-book-open"></i>
+      <div>
+        <h3>Intermediate – S.B.T.R.M Junior College</h3>
+        <p>2020 – 2022 | CGPA: 6.78</p>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <i class="fa-solid fa-school"></i>
+      <div>
+        <h3>10th Grade – Sri Chaitanya School</h3>
+        <p>2019 – 2020 | CGPA: 10</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <p>You can view my resume by click the button below</p>
+    <div style="margin-top: 20px;">
+      <a href="resume.pdf" target="_blank" class="view">View Resume</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li><i class="fa-solid fa-envelope"></i> 
+        <a href="mailto:pulikuntarakshithkumarreddy@gmail.com">pulikuntarakshithkumarreddy@gmail.com</a>
+      </li>
+      <li><i class="fa-solid fa-phone"></i> 
+        <a href="tel:+919381889064">+91 9381889064</a>
+      </li>
+      <li><i class="fa-brands fa-linkedin"></i> 
+        <a href="https://www.linkedin.com/in/pulikuntarakshithkumarreddy" target="_blank">linkedin.com/in/pulikuntarakshithkumarreddy</a>
+      </li>
+      <li><i class="fa-brands fa-github"></i> 
+        <a href="https://github.com/Rakshith1434" target="_blank">github.com/Rakshith1434</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Pulikunta Rakshith Kumar Reddy | Built with ❤️</p>
+  </footer>
+
+</body>
+</html>
